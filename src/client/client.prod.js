@@ -10,12 +10,17 @@ const store = configureStore(window.__INITIAL_STATE__);
  * Fire-up React Router.
  */
 const reactRoot = window.document.getElementById("react-root");
+const router = createRouter();
 
-ReactDOM.render(
-	<Provider store={store}>
-      <RouterProvider router={createRouter()}>
-				<div>aaa</div>
+router.start(() => {
+	ReactDOM.render(
+		<Provider store={store}>
+			<RouterProvider router={router}>
+				<div>
+					<Main />
+				</div>
 			</RouterProvider>
-  </Provider>,
-  reactRoot
-)
+		</Provider>,
+		reactRoot
+	);
+});

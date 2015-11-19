@@ -1,26 +1,23 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
+import { connect } from 'react-redux';
+import Link from '../components/Link';
+import { bindActionCreators } from 'redux';
+import { actions, routeNodeSelector } from 'redux-router5';
 
-export default class extends Component {
+class About extends Component {
+  constructor(props) {
+    super(props);
+  }
+
 	render() {
-		const {styles} = this.props;
-		return (
-			<div>
-				<h3>Getting started</h3>
-				<p>
-					Welcome to <span style={styles.feature}>Hapi Universal Redux</span>.
-					Start editing the components to see the page hot reloading on the client.
-					The goal of this project is to create a simple,
-					yet production ready starterkit for <span style={styles.feature}>React</span> and <span style={styles.feature}>Redux</span> apps.
-				</p>
-				<h3>Redux</h3>
-				<p>
-					To start managing your state with <span style={styles.feature}>Redux</span> create new constants, actions and reducers.
-					On the side is <span style={styles.feature}>Redux DevTools</span>,
-					use it to debug your state.
-					Simply press <span style={styles.feature}>ctrl + H</span> to hide it,
-					or <span style={styles.feature}>ctrl + Q</span> to move it around the screen.
-				</p>
-			</div>
-		)
+    return (
+      <div className="About">
+        About
+				<Link name='home' options={{ reload: true }}>home</Link>
+				<Link name='about' options={{ reload: true }}>about</Link>
+		  </div>
+    )
 	}
 }
+
+export default connect(routeNodeSelector('about'))(About);

@@ -12,18 +12,21 @@ const store = configureStore(window.__INITIAL_STATE__);
  * Fire-up React Router.
  */
 const reactRoot = window.document.getElementById("react-root");
+const router = createRouter();
 
-ReactDOM.render(
-	<Provider store={store}>
-  	<RouterProvider router={createRouter()}>
-			<div>
-				<Main />
-				<DevTools />
-			</div>
-		</RouterProvider>
-	</Provider>,
-	reactRoot
-)
+router.start((err, state) => {
+	ReactDOM.render(
+		<Provider store={store}>
+			<RouterProvider router={router}>
+				<Main>
+					<DevTools />
+				</Main>
+			</RouterProvider>
+		</Provider>,
+		reactRoot
+	);
+});
+
 
 /**
  * Detect whether the server-side render has been discarded due to an invalid checksum.

@@ -15,7 +15,6 @@ const finalCreateStore = compose(
 
 export default function configureStore(initialState) {
 	const store = finalCreateStore(rootReducer, initialState);
-	router.start();
 
 	if (module.hot) {
 		module.hot.accept('../reducers', () =>

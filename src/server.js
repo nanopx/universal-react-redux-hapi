@@ -7,7 +7,7 @@ import configureStore from "./store/configureStore";
 import { RouterProvider } from 'react-router5';
 import { Provider } from 'react-redux';
 import DevTools from './containers/DevTools';
-import router from "./createRouter";
+import createRouter from "./createRouter";
 import url from "url";
 import Main from './layouts/Main';
 
@@ -15,7 +15,7 @@ import Main from './layouts/Main';
  * Create Redux store, and get intitial state.
  */
 const store = configureStore();
-const Router = router();
+const router = createRouter();
 const initialState = store.getState();
 
 /**
@@ -87,15 +87,17 @@ server.ext("onPreResponse", (request, reply) => {
     return reply.continue();
   }
 
-  Router.start(request.path, (state) => {
+	console.info("==> Serving: " + request.path);
+  router.start(request.path, (err, state) => {
+		initialState.router = {route: state};
+
   	const reduxDevTools = process.env.NODE_ENV === "production" ? null : <DevTools />;
 		const reactString = ReactDOM.renderToString(
 			<Provider store={store}>
-				<RouterProvider router={Router}>
-					<div>
-						<Main />
+				<RouterProvider router={router}>
+					<Main>
 						{reduxDevTools}
-					</div>
+					</Main>
 				</RouterProvider>
 			</Provider>
 		);
@@ -118,7 +120,9 @@ server.ext("onPreResponse", (request, reply) => {
  			</body>
 			</html>`
  		);
+
   	reply(output);
-		Router.stop();
+
+		router.stop();
   });
 });

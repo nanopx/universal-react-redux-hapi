@@ -3,17 +3,19 @@ import historyPlugin from 'router5-history';
 
 export default function createRouter(routes) {
   const router = new Router5()
-    .setOption('useHash', true)
-    // .setOption('hashPrefix', '!')
-    .setOption('defaultRoute', 'inbox')
+    .setOption('useHash', false)
+    .setOption('trailingSlash', true)
+    // .setOption('defaultRoute', 'home')
     // Routes
-    .addNode('inbox',         '/inbox')
-    .addNode('inbox.message', '/message/:id')
-    .addNode('compose',       '/compose')
-    .addNode('contacts',      '/contacts')
+    .addNode('home', '/')
+    .addNode('about', '/about')
+    // .addNode('404', '/404')
     // Plugins
-    // .usePlugin(Router5.loggerPlugin())
     .usePlugin(historyPlugin());
+
+  if (__CLIENT__) {
+    router.usePlugin(Router5.loggerPlugin());
+  }
 
   return router;
 };

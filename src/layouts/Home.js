@@ -1,46 +1,24 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
-import User from './components/User';
+import Link from '../components/Link';
+import { bindActionCreators } from 'redux';
+import { actions, routeNodeSelector } from 'redux-router5';
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-  	render() {
-  		const {stargazers, styles} = this.props;
-
-	    return (
-			<div>
-				<h3>Features</h3>
-			    	<ul>
-				    	<li><span style={styles.feature}>Redux</span> for managing app state</li>
-				    	<li><span style={styles.feature}>Redux DevTools</span> for state time travelling</li>
-				    	<li><span style={styles.feature}>React Transform</span> for instant client updates</li>
-				    	<li>Fully automated with npm run scripts</li>
-				    	<li>Server hot reloads with <span style={styles.feature}>piping</span> and Hapi.js</li>
-				    	<li><span style={styles.feature}>Webpack</span> for watch + production builds</li>
-				    	<li><span style={styles.feature}>React</span> and <span style={styles.feature}>React Router</span> on the client and server</li>
-				    	<li><span style={styles.feature}>Babel</span> automatically compiles ES6 + ES7</li>
-				    	<li><span style={styles.feature}>Radium</span> for advanced inline styling</li>
-			    	</ul>
-			    	<p>
-			    		In short – <em>an excellent choice</em>.
-			    		Ready to start{'?'}
-			    	</p>
-				<h3>
-		    		Community
-		    	</h3>
-		    	{stargazers.map((user, key) => {
-					return <User key={key} user={user} styles={styles} />
-				})}
-			</div>
-	    )
+	render() {
+    return (
+      <div className="Home">
+        Home
+        <Link name='home' options={{ reload: true }}>home</Link>
+				<Link name='about' options={{ reload: false }}>about</Link>
+        <Link name='aaaa' options={{ reload: true }}>NOTFOUND</Link>
+		  </div>
+    )
 	}
-
 }
-/**
- * Connect to Redux store.
- */
-export default connect(
-	state => ({
-		stargazers: state.stargazers.users,
-	})
-)(Home)
+
+export default connect(routeNodeSelector('home'))(Home);
