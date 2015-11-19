@@ -3,12 +3,12 @@ import { router5Middleware } from 'redux-router5';
 import reduxPromise from 'redux-promise';
 import rootReducer from '../reducers';
 
-const router = createRouter();
-const finalCreateStore = compose(
-  applyMiddleware(router5Middleware(router)),
-  applyMiddleware(reduxPromise)
-)(createStore);
 
-export default function configureStore(initialState) {
+export default function configureStore(router, initialState) {
+  const finalCreateStore = compose(
+    applyMiddleware(router5Middleware(router)),
+    applyMiddleware(reduxPromise)
+  )(createStore);
+
   return finalCreateStore(rootReducer, initialState);
 }

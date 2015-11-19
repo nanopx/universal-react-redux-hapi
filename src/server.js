@@ -9,14 +9,7 @@ import { Provider } from 'react-redux';
 import DevTools from './containers/DevTools';
 import createRouter from "./createRouter";
 import url from "url";
-import Main from './layouts/Main';
-
-/**
- * Create Redux store, and get intitial state.
- */
-const store = configureStore();
-const router = createRouter();
-const initialState = store.getState();
+import Root from './layouts/Root';
 
 /**
  * Start Hapi server on port 8000.
@@ -88,6 +81,13 @@ server.ext("onPreResponse", (request, reply) => {
   }
 
 	console.info("==> Serving: " + request.path);
+	/**
+	 * Create Redux store, and get intitial state.
+	 */
+	const router = createRouter();
+	const store = configureStore(router);
+	const initialState = store.getState();
+
   router.start(request.path, (err, state) => {
 		initialState.router = {route: state};
 
@@ -95,9 +95,9 @@ server.ext("onPreResponse", (request, reply) => {
 		const reactString = ReactDOM.renderToString(
 			<Provider store={store}>
 				<RouterProvider router={router}>
-					<Main>
+					<Root>
 						{reduxDevTools}
-					</Main>
+					</Root>
 				</RouterProvider>
 			</Provider>
 		);
@@ -112,7 +112,7 @@ server.ext("onPreResponse", (request, reply) => {
 					<link rel="shortcut icon" href="/favicon.ico">
 				</head>
 				<body>
-					<div id="react-root">${reactString}</div>
+					<div id="app">${reactString}</div>
  				<script>
  					window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
  				</script>

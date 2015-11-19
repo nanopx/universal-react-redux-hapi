@@ -12,25 +12,27 @@ class Link extends Component {
 
   onClick(e) {
     e.preventDefault();
-    console.log(this.router);
     this.props.navigateTo(this.props.name, this.props.params, this.props.options);
   }
 
 	render() {
     const className = this.router.isActive(this.props.name, this.props.params) ? 'active' : '';
     const href = this.router.buildUrl(this.props.name);
-    return <a className={className} href={href} onClick={this.onClick}>{ this.props.children }</a>;
+    const Element = this.props.element;
+    return <Element className={className} href={href} onClick={this.onClick}>{ this.props.children }</Element>;
 	}
 }
 
 Link.propTypes = {
   name: PropTypes.string.isRequired,
+  element: PropTypes.string,
   params: PropTypes.object,
   options: PropTypes.object,
   navigateTo: PropTypes.func.isRequired
 };
 
 Link.defaultProps = {
+  element: 'a',
   params: {},
   options: {}
 };

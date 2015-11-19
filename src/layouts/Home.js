@@ -13,9 +13,8 @@ class Home extends Component {
     return (
       <div className="Home">
         Home
-        <Link name='home' options={{ reload: true }}>home</Link>
-				<Link name='about' options={{ reload: false }}>about</Link>
-        <Link name='aaaa' options={{ reload: true }}>NOTFOUND</Link>
+        <Link name="home" element="button" options={{ replace: true }}>home</Link>
+				<Link name="about" element="button" options={{ replace: true, reload: true }}>about</Link>
 		  </div>
     )
 	}

@@ -5,22 +5,22 @@ import configureStore from "../store/configureStore";
 import { Provider } from 'react-redux';
 import DevTools from "../containers/DevTools";
 import createRouter from "../createRouter";
-import Main from '../layouts/Main';
-const store = configureStore(window.__INITIAL_STATE__);
+import Root from '../layouts/Root';
 
 /**
  * Fire-up React Router.
  */
-const reactRoot = window.document.getElementById("react-root");
+const reactRoot = window.document.getElementById("app");
 const router = createRouter();
+const store = configureStore(router, window.__INITIAL_STATE__);
 
 router.start((err, state) => {
 	ReactDOM.render(
 		<Provider store={store}>
 			<RouterProvider router={router}>
-				<Main>
+				<Root>
 					<DevTools />
-				</Main>
+				</Root>
 			</RouterProvider>
 		</Provider>,
 		reactRoot

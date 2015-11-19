@@ -13,9 +13,9 @@ const components = {
 };
 
 /**
- * Main component
+ * Root component
  */
-class Main extends Component {
+class Root extends Component {
 	constructor(props, context) {
     super(props);
   }
@@ -24,7 +24,7 @@ class Main extends Component {
 	  const { route } = this.props;
 	  const segment = route ? route.name.split('.')[0] : undefined;
     return (
-    	<div className="Main">
+    	<div className="Root">
 				{createElement(components[segment] || NotFound)}
 				{this.props.children ? this.props.children : null}
 			</div>
@@ -32,4 +32,4 @@ class Main extends Component {
 	}
 }
 
-export default connect(routeNodeSelector(''))(Main);
+export default connect(routeNodeSelector(''))(Root);
