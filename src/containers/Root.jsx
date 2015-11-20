@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { routeNodeSelector } from 'redux-router5';
 import radium, { Style } from 'radium';
 import rootStyle from '../styles/rootStyle';
-import About from './About';
+import Counter from './Counter';
 import Home from './Home';
 import NotFound from './NotFound';
-console.log(rootStyle);
+
 const components = {
   home: Home,
-  about: About,
+  counter: Counter,
 };
 
 /**

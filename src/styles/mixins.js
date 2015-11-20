@@ -7,5 +7,5 @@ const buttonStyle = styler
 `;
 
 export const buttonMixin = (baseStyle = {}) => {
-  return Object.assign({}, buttonStyle, baseStyle)
+  return Object.assign({}, buttonStyle, baseStyle);
 };

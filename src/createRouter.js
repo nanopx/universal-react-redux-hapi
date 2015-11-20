@@ -7,7 +7,7 @@ export default function createRouter() {
     .setOption('trailingSlash', true)
     // Routes
     .addNode('home', '/')
-    .addNode('about', '/about')
+    .addNode('counter', '/counter')
     // Plugins
     .usePlugin(historyPlugin());
 

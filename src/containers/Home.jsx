@@ -19,9 +19,8 @@ class Home extends Component {
     return (
       <div className="Home">
         Home
-        <Link name="home" element="button" options={{ replace: true }}>home</Link>
-				<Link name="about" element="button" options={{ replace: true, reload: true }}>about</Link>
-        <button style={buttonMixin(this.style.button)}>へへへへ</button>
+        <Link name="home" options={{ replace: true }}>home</Link>
+				<Link name="counter" options={{ replace: true, reload: true }}>counter</Link>
 		  </div>
     );
   }
