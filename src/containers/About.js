@@ -12,7 +12,7 @@ class About extends Component {
     return (
       <div className="About">
         About
-				<Link name="home" options={{ reload: true }}>home</Link>
+				<Link name="home" options={{ reload: true }}>Home</Link>
 				<Link name="about" options={{ reload: true }}>about</Link>
 		  </div>
     );

@@ -2,13 +2,13 @@ import { Server } from 'hapi';
 import h2o2 from 'h2o2';
 import inert from 'inert';
 import React from 'react';
+import url from 'url';
 import ReactDOM from 'react-dom/server';
 import configureStore from './store/configureStore';
 import { RouterProvider } from 'react-router5';
 import { Provider } from 'react-redux';
 import DevTools from './containers/DevTools';
 import createRouter from './createRouter';
-import url from 'url';
 import Root from './containers/Root';
 
 /**
@@ -98,7 +98,7 @@ server.ext('onPreResponse', (request, reply) => {
     const reactString = ReactDOM.renderToString(
       <Provider store={store}>
         <RouterProvider router={router}>
-          <Root>
+          <Root radiumConfig={{userAgent: request.headers['user-agent']}}>
             {reduxDevTools}
           </Root>
         </RouterProvider>
