@@ -5,7 +5,7 @@
 * React
 * Redux
 * Router5
-* hapi.js
+* hapi.js + API proxying with h2o2
 * Babel6
 * Webpack
 * Stylus
