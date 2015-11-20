@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
 import { routeNodeSelector } from 'redux-router5';
 import Helmet from 'react-helmet';
 import Link from './Link';
 import ClickCounter from '../components/Counter';
-import * as CounterActions from '../actions/counter'
+import * as CounterActions from '../actions/counter';
 
 function mapStateToProps(state) {
   return {
-    counter: state.counter
-  }
+    counter: state.counter,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(CounterActions, dispatch)
+  return bindActionCreators(CounterActions, dispatch);
 }
 
 class Counter extends Component {

@@ -23,6 +23,18 @@ config.plugins = [
   new webpack.NoErrorsPlugin(),
 ];
 
+config.module.preLoaders = [
+  {
+    test: /\.jsx?$/,
+    exclude: /node_modules/,
+    loader: 'eslint-loader',
+  },
+];
+
+config.module.eslint = {
+  configFile: './.eslintrc',
+};
+
 config.module.loaders =  [
   {
     test: /\.jsx?$/,

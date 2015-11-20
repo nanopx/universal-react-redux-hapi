@@ -1,5 +1,5 @@
 require('babel-core/register')();
-require("babel-polyfill");
+require('babel-polyfill');
 
 /**
  * Define universal constants.
@@ -7,10 +7,14 @@ require("babel-polyfill");
 global.__CLIENT__ = false;
 global.__SERVER__ = true;
 
-if (process.env.NODE_ENV !== 'production') {
-  if (!require('piping')({hook: true, includeModules: false})) {
-    return;
+if (process.env.NODE_ENV === 'production') {
+  module.exports = require('./src/server');
+} else {
+  if (require('piping')({
+    hook: true,
+    includeModules: false,
+    usePolling: true,
+  })) {
+    module.exports = require('./src/server');
   }
 }
-
-module.exports = require('./src/server');

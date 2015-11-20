@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react';
 
 const Counter = (props) => {
   const { countUp, countDown, countReset, counter } = props;
   return (
     <p>
-      Clicked: {counter} times
+      Click count: {counter}
       {' '}
       <button onClick={countUp}>+</button>
       {' '}
@@ -13,13 +13,13 @@ const Counter = (props) => {
       <button onClick={countReset}>reset</button>
     </p>
   );
-}
+};
 
 Counter.propTypes = {
   countUp: PropTypes.func.isRequired,
   countDown: PropTypes.func.isRequired,
   countReset: PropTypes.func.isRequired,
-  counter: PropTypes.number.isRequired
-}
+  counter: PropTypes.number.isRequired,
+};
 
-export default Counter
+export default Counter;

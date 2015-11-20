@@ -20,12 +20,18 @@ const server = new Server();
 
 server.connection({host: hostname, port: process.env.PORT || 3000});
 
+const plugins = [
+  h2o2,
+  inert,
+];
+
+if (process.env.NODE_ENV !== 'production') {
+  // WebpackPlugin
+  // plugins.push();
+}
+
 server.register(
-  [
-    h2o2,
-    inert,
-    // WebpackPlugin
-  ],
+  plugins,
   (err) => {
     if (err) {
       throw err;

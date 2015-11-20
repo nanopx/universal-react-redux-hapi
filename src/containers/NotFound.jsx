@@ -6,7 +6,7 @@ class NotFound extends Component {
     super(props);
   }
 
-	render() {
+  render() {
     return (
       <div className="NotFound">
         NotFound

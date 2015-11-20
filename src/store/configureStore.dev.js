@@ -6,7 +6,7 @@ import rootReducer from '../reducers';
 import DevTools from '../containers/DevTools';
 
 export default function configureStore(router, initialState) {
-	const currentPath = initialState ? initialState.router.route.path : '/'
+	// const currentPath = initialState ? initialState.router.route.path : '/';
   const finalCreateStore = compose(
     applyMiddleware(router5Middleware(router)),
     applyMiddleware(reduxPromise),

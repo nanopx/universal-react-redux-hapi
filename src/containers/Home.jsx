@@ -3,20 +3,19 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import Link from './Link';
 import { routeNodeSelector } from 'redux-router5';
-import { buttonMixin } from '../styles/mixins';
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   style = {
     button: {
       color: 'red',
     },
   }
 
-  constructor(props) {
-    super(props);
-  }
-
-	render() {
+  render() {
     return (
       <div className="Home">
         <Helmet title="Home" />
