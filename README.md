@@ -13,4 +13,4 @@
 * React Helmet
 * Radium + react-styling
 * redux-promise and async/await(via babel)
-* mocha (not implemented yet @ Nov 20 2015)
+* tests using mocha, nock & power-assert
