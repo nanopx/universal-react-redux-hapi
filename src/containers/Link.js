@@ -4,6 +4,24 @@ import { bindActionCreators } from 'redux';
 import { actions } from 'redux-router5';
 
 class Link extends Component {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    element: PropTypes.string,
+    params: PropTypes.object,
+    options: PropTypes.object,
+    navigateTo: PropTypes.func.isRequired
+  }
+
+  static defaultProps = {
+    element: 'a',
+    params: {},
+    options: {}
+  }
+
+  static contextTypes = {
+    router: PropTypes.object.isRequired
+  }
+
   constructor(props, context) {
     super(props);
 		this.router = context.router;
@@ -23,23 +41,6 @@ class Link extends Component {
 	}
 }
 
-Link.propTypes = {
-  name: PropTypes.string.isRequired,
-  element: PropTypes.string,
-  params: PropTypes.object,
-  options: PropTypes.object,
-  navigateTo: PropTypes.func.isRequired
-};
-
-Link.defaultProps = {
-  element: 'a',
-  params: {},
-  options: {}
-};
-
-Link.contextTypes = {
-  router: PropTypes.object.isRequired
-};
 
 export default connect(
   state => state.router,
