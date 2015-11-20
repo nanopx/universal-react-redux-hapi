@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
-import Link from '../components/Link';
+import Link from './Link';
 import { bindActionCreators } from 'redux';
 import { actions } from 'redux-router5';
 
@@ -14,7 +14,7 @@ class NotFound extends Component {
     return (
       <div className="NotFound">
         NotFound
-				<Link name='home' options={{ reload: true }}>home</Link>
+				<Link name="home" options={{ reload: true }}>home</Link>
 		  </div>
     )
 	}

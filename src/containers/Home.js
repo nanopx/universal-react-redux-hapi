@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
-import Link from '../components/Link';
+import Link from './Link';
 import { bindActionCreators } from 'redux';
 import { actions, routeNodeSelector } from 'redux-router5';
 

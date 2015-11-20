@@ -1,5 +1,5 @@
 import React, {Component, createElement} from 'react';
-import Link from '../components/Link';
+import Link from './Link';
 import { connect } from 'react-redux';
 import { actions, routeNodeSelector } from 'redux-router5';
 import { bindActionCreators } from 'redux';

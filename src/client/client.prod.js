@@ -4,10 +4,10 @@ import { RouterProvider } from 'react-router5';
 import configureStore from "../store/configureStore";
 import { Provider } from 'react-redux';
 import createRouter from "../createRouter";
-import Root from '../layouts/Root';
+import Root from '../containers/Root';
 
 /**
- * Fire-up React Router.
+ * Fire-up Router5.
  */
 const reactRoot = window.document.getElementById("app");
 const router = createRouter();
