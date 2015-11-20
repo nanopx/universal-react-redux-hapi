@@ -3,6 +3,7 @@ import h2o2 from 'h2o2';
 import inert from 'inert';
 import React from 'react';
 import url from 'url';
+import Helmet from 'react-helmet';
 import ReactDOM from 'react-dom/server';
 import configureStore from './store/configureStore';
 import { RouterProvider } from 'react-router5';
@@ -105,14 +106,16 @@ server.ext('onPreResponse', (request, reply) => {
       </Provider>
     );
 
+    const head = Helmet.rewind();
     const webserver = process.env.NODE_ENV === 'production' ? '' : `//${hostname}:3030`;
+
     const output = (
       `<!doctype html>
       <html lang="ja">
         <head>
-          <meta charset="utf-8">
-          <title>universal-react-redux-hapi</title>
-          <link rel="shortcut icon" href="/favicon.ico">
+          ${head.title.toString()}
+          ${head.meta.toString()}
+          ${head.link.toString()}
         </head>
         <body>
           <div id="app">${reactString}</div>

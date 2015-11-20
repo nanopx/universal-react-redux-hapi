@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
 import Link from './Link';
 import { routeNodeSelector } from 'redux-router5';
 import { buttonMixin } from '../styles/mixins';
@@ -18,6 +19,7 @@ class Home extends Component {
 	render() {
     return (
       <div className="Home">
+        <Helmet title="Home" />
         Home
         <Link name="home" options={{ replace: true }}>home</Link>
 				<Link name="counter" options={{ replace: true, reload: true }}>counter</Link>

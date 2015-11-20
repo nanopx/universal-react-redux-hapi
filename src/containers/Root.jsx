@@ -2,10 +2,12 @@ import React, { Component, createElement } from 'react';
 import { connect } from 'react-redux';
 import { routeNodeSelector } from 'redux-router5';
 import radium, { Style } from 'radium';
+import Helmet from 'react-helmet';
 import rootStyle from '../styles/rootStyle';
 import Counter from './Counter';
 import Home from './Home';
 import NotFound from './NotFound';
+
 
 const components = {
   home: Home,
@@ -25,6 +27,11 @@ class Root extends Component {
     const segment = route ? route.name.split('.')[0] : undefined;
     return (
       <div className="Root">
+        <Helmet
+          titleTemplate="boilerplate | %s"
+          meta={[
+            {name: 'description', content: 'Webapp using universal-react-redux-hapi'},
+          ]} />
         {/*
           * Radium Style component, for global styles.
           */}
