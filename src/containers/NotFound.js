@@ -1,8 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
 import Link from './Link';
-import { bindActionCreators } from 'redux';
-import { actions } from 'redux-router5';
 
 class NotFound extends Component {
   constructor(props) {
@@ -10,14 +7,13 @@ class NotFound extends Component {
   }
 
 	render() {
-		const { navigateTo, route } = this.props;
     return (
       <div className="NotFound">
         NotFound
 				<Link name="home" options={{ reload: true }}>home</Link>
 		  </div>
-    )
-	}
+    );
+  }
 }
 
 export default NotFound;
