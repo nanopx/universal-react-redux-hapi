@@ -1,23 +1,10 @@
+import { createAction } from 'redux-actions';
 import {
   COUNTER_COUNT_UP,
   COUNTER_COUNT_DOWN,
   COUNTER_COUNT_RESET,
-} from '../constants/counter';
+} from '../actionTypes';
 
-export function countUp() {
-  return {
-    type: COUNTER_COUNT_UP,
-  };
-}
-
-export function countDown() {
-  return {
-    type: COUNTER_COUNT_DOWN,
-  };
-}
-
-export function countReset() {
-  return {
-    type: COUNTER_COUNT_RESET,
-  };
-}
+export const countUp = createAction(COUNTER_COUNT_UP);
+export const countDown = createAction(COUNTER_COUNT_DOWN);
+export const countReset = createAction(COUNTER_COUNT_RESET);

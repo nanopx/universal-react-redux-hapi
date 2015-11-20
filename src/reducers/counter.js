@@ -2,7 +2,7 @@ import {
   COUNTER_COUNT_UP,
   COUNTER_COUNT_DOWN,
   COUNTER_COUNT_RESET,
-} from '../constants/counter';
+} from '../actionTypes';
 
 const counter = (state = 0, action) => {
   switch (action.type) {

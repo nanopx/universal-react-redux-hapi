@@ -6,7 +6,10 @@ module.exports = {
   cache: false,
   context: __dirname,
   devtool: false,
-  entry: ['./src/client'],
+  entry: [
+    'babel-polyfill',
+    './src/client',
+  ],
   output: {
     path: path.join(__dirname, 'static/dist'),
     filename: 'client.js',
