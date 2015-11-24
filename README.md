@@ -41,6 +41,8 @@ $ NODE_ENV=production npm start
 ```
 $ npm run lint
 ```
+`$ npm start` in development mode, will also lint your codes every time it builds.
+
 
 **Testing**
 ```
