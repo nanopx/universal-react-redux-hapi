@@ -1,6 +1,9 @@
 # universal-react-redux-hapi
 A boilerplate using React + Redux + hapi + Router5, with Server-side rendering and hot-reloads.
 
+[![Dependency Status](https://david-dm.org/nanopx/universal-react-redux-hapi.svg?style=flat-square)](https://david-dm.org/nanopx/universal-react-redux-hapi)
+[![devDependency Status](https://david-dm.org/nanopx/universal-react-redux-hapi/dev-status.svg?style=flat-square)](https://david-dm.org/nanopx/universal-react-redux-hapi#info=devDependencies)
+
 ## Features
 * Server-side rendering + hot reloads (no checksum errors!)
 * React
@@ -50,8 +53,8 @@ normally you wont need to be changing it.
 > I'm planning to fix this soon, but only if it doesn't make the boilerplate more complex.
 
 ## TODO
-- [] Create a better example app and example tests
-- [] Browser reload when server-side script changes
+- [ ] Create a better example app and example tests
+- [ ] Browser reload when server-side script changes
 
 ## License
 MIT
