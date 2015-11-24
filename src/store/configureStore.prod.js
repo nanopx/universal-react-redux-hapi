@@ -3,7 +3,6 @@ import { router5Middleware } from 'redux-router5';
 import reduxPromise from 'redux-promise';
 import rootReducer from '../reducers';
 
-
 export default function configureStore(router, initialState) {
   const finalCreateStore = compose(
     applyMiddleware(router5Middleware(router)),
