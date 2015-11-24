@@ -16,8 +16,8 @@ A boilerplate using React + Redux + hapi + Router5, with Server-side rendering a
   - For managing app's state.
 * [Router5](http://router5.github.io/)
   - For routing.
-* [hapi.js](http://hapijs.com/) + API proxying with [h2o2](https://github.com/hapijs/h2o2)
-  * For web server and APIs.
+* [hapi.js](http://hapijs.com/) + [h2o2](https://github.com/hapijs/h2o2)
+  * For web server, web APIs, and proxying.
 * [webpack](http://webpack.github.io/)
   * For building client bundles.
 * [Babel6](https://babeljs.io/)
