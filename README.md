@@ -24,8 +24,9 @@ A boilerplate using React + Redux + hapi + Router5, with Server-side rendering a
   * For transpiling ES6(ES2015), and ES7(ES2016).
 * [ESLint](http://eslint.org/)
   * For linting.
-* [mocha](https://mochajs.org/), [nock](https://github.com/pgte/nock) & [power-assert](https://github.com/power-assert-js/power-assert) (power-assert supports async/await)
+* [mocha](https://mochajs.org/), [nock](https://github.com/pgte/nock) & [power-assert](https://github.com/power-assert-js/power-assert)
   * For testing.
+  * power-assert supports async/await, which can be used with [redux-promise](https://github.com/acdlite/redux-promise)
 
 > Personally, I think Router5 is better for managing the `props` than [React Router](https://github.com/rackt/react-router).
 
