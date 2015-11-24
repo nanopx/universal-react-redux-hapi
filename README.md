@@ -29,8 +29,7 @@ A boilerplate using React + Redux + hapi + Router5, with Server-side rendering a
   * power-assert supports async/await, which can be used with [redux-promise](https://github.com/acdlite/redux-promise)
 
 > Personally, I think Router5 is better for managing the `props` than [React Router](https://github.com/rackt/react-router).
-
-> No `React.cloneElement` with `this.props.children`, no confision with React's `props`, etc.
+> No `React.cloneElement` with `this.props.children`, no confusion with React's `props`, etc.
 
 
 ## Getting started
