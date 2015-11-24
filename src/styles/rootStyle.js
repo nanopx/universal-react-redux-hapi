@@ -5,5 +5,5 @@ export default styler
 `
   body
     background: ${colors.pink}
-    color: ${colors.white}
+    color: ${colors.black}
 `;

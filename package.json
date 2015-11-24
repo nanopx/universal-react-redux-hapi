@@ -1,7 +1,7 @@
 {
   "name": "universal-react-redux-hapi",
   "version": "0.0.1",
-  "description": "Boilerplate using React, redux and hapi",
+  "description": "A boilerplate using React + Redux + hapi + Router5, with Server-side rendering and hot-reloads.",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -9,10 +9,8 @@
   },
   "homepage": "https://github.com/nanopx/universal-react-redux-hapi",
   "scripts": {
-    "start": "NODE_PATH=\"./src\" node ./server",
-    "build": "webpack --verbose --colors --display-error-details --config webpack.client.js",
-    "watch-client": "webpack --verbose --colors --display-error-details --config webpack.client-watch.js && webpack-dev-server --config webpack.client-watch.js",
-    "dev": "concurrent --kill-others \"npm run watch-client\" \"npm run start\"",
+    "start": "node ./index.js",
+    "build": "webpack --verbose --colors --display-error-details --config build.js",
     "lint": "eslint ./; exit 0",
     "test": "mocha --require babel-core/register"
   },
@@ -27,7 +25,6 @@
     "inert": "^3.2.0",
     "isomorphic-fetch": "^2.2.0",
     "normalizr": "^1.4.0",
-    "piping": "^0.3.0",
     "radium": "^0.15.3",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
@@ -51,10 +48,11 @@
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
     "babel-preset-stage-0": "^6.1.18",
-    "concurrently": "^1.0.0",
     "eslint": "^1.9.0",
     "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^3.9.0",
+    "hapi-webpack-plugin": "^1.2.2",
+    "json-loader": "^0.5.4",
     "mocha": "^2.3.4",
     "nock": "^3.1.1",
     "power-assert": "^1.2.0",
@@ -62,7 +60,6 @@
     "redux-devtools-dock-monitor": "^1.0.0-beta-3",
     "redux-devtools-log-monitor": "^1.0.0-beta-3",
     "webpack": "^1.12.6",
-    "webpack-dev-server": "^1.12.1",
     "webpack-hot-middleware": "^2.5.0"
   }
 }

@@ -4,7 +4,7 @@ const Counter = (props) => {
   const { countUp, countDown, countReset, counter } = props;
   return (
     <p>
-      Click count: {counter}
+      Clicked {counter} times!
       {' '}
       <button onClick={countUp}>+</button>
       {' '}
