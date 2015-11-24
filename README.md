@@ -16,29 +16,30 @@ A boilerplate using React + Redux + hapi + Router5, with Server-side rendering a
 * tests using mocha, nock & power-assert (power-assert supports async/await)
 
 ## Getting started
-** First steps... **
+**First steps...**
 ```
 $ git clone https://github.com/nanopx/universal-react-redux-hapi.git MyApp
 $ cd MyApp
 $ npm install
 ```
 
-** Start development server **
+**Start development server**
 ```
 $ npm start
 ```
 
-** Start production server **
+**Start production server**
 ```
 $ NODE_ENV=production npm run build
 $ NODE_ENV=production npm start
+```
 
-** Linting **
+**Linting**
 ```
 $ npm run lint
 ```
 
-** Testing **
+**Testing**
 ```
 $ npm test
 ```
