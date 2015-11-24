@@ -10,7 +10,7 @@
   "homepage": "https://github.com/nanopx/universal-react-redux-hapi",
   "scripts": {
     "start": "node ./index.js",
-    "build": "webpack --verbose --colors --display-error-details --config build.js",
+    "build": "webpack --verbose --colors --display-error-details --config build.config.js",
     "lint": "eslint ./; exit 0",
     "test": "mocha --require babel-core/register"
   },
