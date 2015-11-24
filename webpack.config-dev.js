@@ -1,3 +1,4 @@
+import path from 'path';
 import webpack from 'webpack';
 import * as config from './webpack.config';
 
@@ -26,6 +27,10 @@ config.module.preLoaders = [
     test: /\.jsx?$/,
     exclude: /node_modules/,
     loader: 'eslint-loader',
+    include: [
+      path.resolve(__dirname, 'src'),
+      path.resolve(__dirname, 'test'),
+    ],
   },
 ];
 

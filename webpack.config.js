@@ -46,12 +46,22 @@ export const module = {
   loaders: [
     {
       test: /\.json$/,
-      loader: 'json-loader',
+      loader: 'json',
+      include: [
+        path.resolve(__dirname, 'src'),
+      ],
+      exclude: /node_modules/,
     },
     {
       test: /\.jsx?$/,
       loader: 'babel',
       presets: ['react', 'es2015', 'stage-0'],
+      query: {
+        cacheDirectory: true,
+      },
+      include: [
+        path.resolve(__dirname, 'src'),
+      ],
       exclude: /node_modules/,
     },
   ],

@@ -47,7 +47,7 @@ export default function initialize(cb) {
       // Hot reloading for client-side sources, for the server.
       // Delete the cached client modules and re-require at the next request.
       compiler.plugin('done', () => {
-        console.log('Clearing src/ module cache from server'); // eslint-disable-line no-console
+        console.info('Clearing src/ module cache from server'); // eslint-disable-line no-console
         Object.keys(require.cache).forEach((id) => {
           if (/\/src\//.test(id)) delete require.cache[id];
         });
