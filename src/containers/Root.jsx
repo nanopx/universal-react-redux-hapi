@@ -22,10 +22,9 @@ class Root extends Component {
   }
 
   render() {
-    const { route } = this.props;
-    console.log(route);
+    // NOTE: `this.props.state` is used by the server.
+    const route = this.props.route || this.props.state;
     const segment = route ? route.name.split('.')[0] : undefined;
-
     return (
       <div className="Root">
         <Helmet

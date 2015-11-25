@@ -6,7 +6,7 @@ import url from 'url';
 import Helmet from 'react-helmet';
 import ReactDOM from 'react-dom/server';
 import configureStore from './store/configureStore';
-import { RouterProvider, actions } from 'react-router5';
+import { RouterProvider } from 'react-router5';
 import { Provider } from 'react-redux';
 import DevTools from './containers/DevTools';
 import createRouter from './createRouter';
@@ -84,24 +84,28 @@ export default function initialize(cb) {
      * Create Redux store, and get intitial state.
      */
     const router = createRouter();
+    const store = configureStore(router);
 
     // initialize router
     router.start(request.path, (err, state) => {
-      const store = configureStore(router, {router: {route: state}});
 
       // require Root component here, for hot reloading the backend's component
       // TODO: there must be a better approach for this.
       const Root = require('./containers/Root').default;
+
       const reduxDevTools = process.env.NODE_ENV === 'production' ? null : <DevTools />;
       const providerComponent = (
         <Provider store={store}>
           <RouterProvider router={router}>
-            <Root radiumConfig={{userAgent: request.headers['user-agent']}}>
+            {/** pass down state here, so that the Root component can figure out which page to render */}
+            <Root state={state} radiumConfig={{userAgent: request.headers['user-agent']}}>
               {reduxDevTools}
             </Root>
           </RouterProvider>
         </Provider>
       );
+
+      // Fire all the promises for data-fetching etc.
       store.renderUniversal(ReactDOM.renderToString, providerComponent).then(({ output }) => {
         const initialState = store.getState();
         const head = Helmet.rewind();
