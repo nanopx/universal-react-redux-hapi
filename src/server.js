@@ -6,7 +6,7 @@ import url from 'url';
 import Helmet from 'react-helmet';
 import ReactDOM from 'react-dom/server';
 import configureStore from './store/configureStore';
-import { RouterProvider } from 'react-router5';
+import { RouterProvider, actions } from 'react-router5';
 import { Provider } from 'react-redux';
 import DevTools from './containers/DevTools';
 import createRouter from './createRouter';
@@ -102,7 +102,6 @@ export default function initialize(cb) {
           </RouterProvider>
         </Provider>
       );
-
       store.renderUniversal(ReactDOM.renderToString, providerComponent).then(({ output }) => {
         const initialState = store.getState();
         const head = Helmet.rewind();

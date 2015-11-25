@@ -14,7 +14,6 @@ const initialState = {
 };
 
 export default function repository(state = initialState, action) {
-  console.log(state, '-> reducer');
   switch (action.type) {
   case REPOSITORY_SEARCH:
     const {entities, result, queries} = action.payload.repositories;
@@ -34,6 +33,6 @@ export default function repository(state = initialState, action) {
       isLoading: false,
     });
   default:
-    return initialState;
+    return state || initialState;
   }
 }

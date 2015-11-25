@@ -23,6 +23,7 @@ class Root extends Component {
 
   render() {
     const { route } = this.props;
+    console.log(route);
     const segment = route ? route.name.split('.')[0] : undefined;
 
     return (
