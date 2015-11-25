@@ -5,7 +5,7 @@ import {
 } from '../actionTypes';
 
 const initialState = {
-  isLoading: true,
+  isLoading: false,
   fetchedCount: 0,
   totalCount: 0,
   repositories: {},
@@ -13,9 +13,9 @@ const initialState = {
   queries: {},
 };
 
-export default function stargazers(state = initialState, action) {
+export default function repository(state = initialState, action) {
+  console.log(state, '-> reducer');
   switch (action.type) {
-
   case REPOSITORY_SEARCH:
     const {entities, result, queries} = action.payload.repositories;
     return Object.assign({}, state, {
@@ -25,19 +25,15 @@ export default function stargazers(state = initialState, action) {
       totalCount: result.total_count,
       queries: queries,
     });
-
   case REPOSITORY_START_SEARCH:
     return Object.assign({}, state, {
       isLoading: true,
     });
-
   case REPOSITORY_STOP_SEARCH:
     return Object.assign({}, state, {
       isLoading: false,
     });
-
   default:
     return initialState;
-
   }
 }

@@ -37,6 +37,7 @@
     "redux-form": "^3.0.9",
     "redux-promise": "^0.5.0",
     "redux-router5": "^1.0.0",
+    "redux-universal": "0.0.2",
     "router5": "^1.0.0",
     "router5-history": "^1.0.0"
   },

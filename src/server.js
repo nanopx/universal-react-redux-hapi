@@ -84,19 +84,16 @@ export default function initialize(cb) {
      * Create Redux store, and get intitial state.
      */
     const router = createRouter();
-    const store = configureStore(router);
-    const initialState = store.getState();
 
     // initialize router
     router.start(request.path, (err, state) => {
-      initialState.router = {route: state};
+      const store = configureStore(router, {router: {route: state}});
 
       // require Root component here, for hot reloading the backend's component
       // TODO: there must be a better approach for this.
       const Root = require('./containers/Root').default;
-
       const reduxDevTools = process.env.NODE_ENV === 'production' ? null : <DevTools />;
-      const reactString = ReactDOM.renderToString(
+      const providerComponent = (
         <Provider store={store}>
           <RouterProvider router={router}>
             <Root radiumConfig={{userAgent: request.headers['user-agent']}}>
@@ -106,29 +103,36 @@ export default function initialize(cb) {
         </Provider>
       );
 
-      const head = Helmet.rewind();
+      store.renderUniversal(ReactDOM.renderToString, providerComponent).then(({ output }) => {
+        const initialState = store.getState();
+        const head = Helmet.rewind();
 
-      const output = (
-        `<!doctype html>
-        <html lang="ja">
-          <head>
-            ${head.title.toString()}
-            ${head.meta.toString()}
-            ${head.link.toString()}
-          </head>
-          <body>
-            <div id="app">${reactString}</div>
-           <script>
-             window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
-           </script>
-           <script src=/dist/client.js></script>
-         </body>
-        </html>`
-      );
+        const markup = (
+          `<!doctype html>
+          <html lang="ja">
+            <head>
+              ${head.title.toString()}
+              ${head.meta.toString()}
+              ${head.link.toString()}
+            </head>
+            <body>
+              <div id="app">${output}</div>
+             <script>
+               window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
+             </script>
+             <script src=/dist/client.js></script>
+           </body>
+          </html>`
+        );
+        //  <script src=/dist/client.js></script>
 
-      reply(output);
-
-      router.stop();
+        reply(markup);
+        router.stop();
+      }).catch(({ output, error }) => {
+        // TODO: handle error properly
+        console.error(output, error); // eslint-disable-line no-console
+        router.stop();
+      });
     });
   });
 }

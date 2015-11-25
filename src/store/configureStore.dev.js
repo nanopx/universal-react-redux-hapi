@@ -1,9 +1,13 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, compose } from 'redux';
 import { router5Middleware } from 'redux-router5';
 // import { persistState } from 'redux-devtools';
 import reduxPromise from 'redux-promise';
 import rootReducer from '../reducers';
 import DevTools from '../containers/DevTools';
+
+const applyMiddleware = __SERVER__ ?
+  require('redux-universal') :
+  require('redux').applyMiddleware;
 
 export default function configureStore(router, initialState) {
   // const currentPath = initialState ? initialState.router.route.path : '/';
@@ -15,6 +19,7 @@ export default function configureStore(router, initialState) {
   )(createStore);
 
   const store = finalCreateStore(rootReducer, initialState);
+  console.log(store.getState(), initialState, 'initial state from configureStore');
 
   // if (module.hot) {
   //   module.hot.accept('../reducers', () =>

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Helmet from 'react-helmet';
 // import Link from './Link';
+import RepositoryList from '../components/RepositoryList';
+import SearchStatus from '../components/SearchStatus';
 import * as RepositoryActions from '../actions/repository';
 
 function mapStateToProps(state) {
@@ -21,21 +23,19 @@ class Repositories extends Component {
   }
 
   componentWillMount() {
-    this.props.repositoryStartSearch();
-  }
-
-  componentDidMount() {
-    this.props.repositorySearch();
+    if (this.props.repositories.fetchedCount === 0) {
+      this.props.repositorySearch();
+    }
   }
 
   render() {
-    // const {fetchedCount, isLoading, repositories, totalCount, users, queries} = this.props.repositories;
-    // Repositories: {fetchedCount}/{totalCount} Loading: {JSON.stringify(isLoading)}
     return (
       <div className="Repositories">
         <Helmet title="Repositories example" meta={[
           {name: 'description', content: 'Repository search'},
         ]} />
+        <SearchStatus {...this.props.repositories}/>
+        <RepositoryList {...this.props.repositories}/>
 		  </div>
     );
   }
