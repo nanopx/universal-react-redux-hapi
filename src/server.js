@@ -62,7 +62,7 @@ export default function initialize(cb) {
             query: request.query,
           }));
         },
-        onResponse(err, res/** , request, reply, settings, ttl **/) {
+        onResponse(err, res, request, reply/** , settings, ttl **/) {
           reply(res);
         },
       },

@@ -1,7 +1,8 @@
 {
   "parser": "babel-eslint",
   "plugins": [
-    "react"
+    "react",
+    "babel"
   ],
   "env": {
     "browser": true,
@@ -30,7 +31,7 @@
     "strict": [2, "never"],
     "no-var": 2,
     "prefer-const": 2,
-    "arrow-parens": 2,
+    "arrow-parens": 0,
     "arrow-spacing": [2, {
       "before": true,
       "after": true
@@ -55,7 +56,7 @@
     "no-this-before-super": 2,
     "no-shadow": 2,
     "no-shadow-restricted-names": 2,
-    "no-unused-vars": [2, {
+    "no-unused-vars": [1, {
       "vars": "local",
       "args": "after-used"
     }],
@@ -211,6 +212,13 @@
         "everything-else",
         "render"
       ]
-    }]
-  }
+    }],
+
+    "babel/generator-star-spacing": 0,
+    "babel/new-cap": 0,
+    "babel/object-curly-spacing": 0,
+    "babel/object-shorthand": 0,
+    "babel/arrow-parens": 1,
+    "babel/no-await-in-loop": 0
+  },
 }

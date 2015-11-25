@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import Link from './Link';
 import { routeNodeSelector } from 'redux-router5';
+import Link from './Link';
+import Repositories from './Repositories';
 
 class Home extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class Home extends Component {
         Home
         <Link name="home" options={{ replace: true }}>home</Link>
 				<Link name="counter" options={{ replace: true, reload: true }}>counter</Link>
+        <Repositories />
 		  </div>
     );
   }

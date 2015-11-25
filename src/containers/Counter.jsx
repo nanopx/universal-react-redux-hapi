@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { routeNodeSelector } from 'redux-router5';
 import Helmet from 'react-helmet';
 import Link from './Link';
-import ClickCounter from '../components/Counter';
+import ClickCounter from '../components/ClickCounter';
 import * as CounterActions from '../actions/counter';
 
 function mapStateToProps(state) {
@@ -37,4 +37,5 @@ class Counter extends Component {
 }
 
 Counter = connect(routeNodeSelector('counter'))(Counter);
+
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
