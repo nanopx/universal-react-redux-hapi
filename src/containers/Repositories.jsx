@@ -6,6 +6,7 @@ import Helmet from 'react-helmet';
 import RepositoryList from '../components/RepositoryList';
 import SearchStatus from '../components/SearchStatus';
 import * as RepositoryActions from '../actions/repository';
+import resolve from '../decorators/redux-resolve';
 
 function mapStateToProps(state) {
   return {
@@ -23,9 +24,9 @@ class Repositories extends Component {
   }
 
   componentWillMount() {
-    if (this.props.repositories.fetchedCount === 0) {
-      this.props.repositorySearch();
-    }
+    // if (this.props.repositories.fetchedCount === 0) {
+    //   this.props.repositorySearch();
+    // }
   }
 
   render() {
@@ -41,4 +42,11 @@ class Repositories extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Repositories);
+export default connect(mapStateToProps, mapDispatchToProps)(resolve((resolver, props, getState) => {
+  // if (props.repositories.fetchedCount === 0) {
+  resolver.resolve(props.repositorySearch);
+  // }
+  // if (!isLoaded(getState())) {
+  //   resolver.resolve(props.load);
+  // }
+})(Repositories));

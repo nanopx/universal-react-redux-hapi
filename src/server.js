@@ -10,6 +10,7 @@ import { RouterProvider } from 'react-router5';
 import { Provider } from 'react-redux';
 import DevTools from './containers/DevTools';
 import createRouter from './createRouter';
+import ReduxResolver from './lib/universalReduxResolver';
 // import Root from './containers/root';
 
 export default function initialize(cb) {
@@ -78,64 +79,64 @@ export default function initialize(cb) {
       return reply.continue();
     }
 
-    console.info('==> Serving: ' + request.path); // eslint-disable-line no-console
-
     /**
      * Create Redux store, and get intitial state.
      */
     const router = createRouter();
+    const resolver = new ReduxResolver();
     const store = configureStore(router);
+    store.resolver = resolver;
 
     // initialize router
-    router.start(request.path, (err, state) => {
+    router.start(request.path, async (/** err, state */) => {
 
       // require Root component here, for hot reloading the backend's component
       // TODO: there must be a better approach for this.
       const Root = require('./containers/Root').default;
-
       const reduxDevTools = process.env.NODE_ENV === 'production' ? null : <DevTools />;
-      const providerComponent = (
+
+      const initialComponents = (
         <Provider store={store}>
           <RouterProvider router={router}>
             {/** pass down state here, so that the Root component can figure out which page to render */}
-            <Root state={state} radiumConfig={{userAgent: request.headers['user-agent']}}>
+            <Root radiumConfig={{userAgent: request.headers['user-agent']}}>
               {reduxDevTools}
             </Root>
           </RouterProvider>
         </Provider>
       );
 
+      // initial render, but do nothing with it
+      ReactDOM.renderToString(initialComponents);
+
       // Fire all the promises for data-fetching etc.
-      store.renderUniversal(ReactDOM.renderToString, providerComponent).then(({ output }) => {
-        const initialState = store.getState();
-        const head = Helmet.rewind();
+      await resolver.dispatchAll();
 
-        const markup = (
-          `<!doctype html>
-          <html lang="ja">
-            <head>
-              ${head.title.toString()}
-              ${head.meta.toString()}
-              ${head.link.toString()}
-            </head>
-            <body>
-              <div id="app">${output}</div>
-             <script>
-               window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
-             </script>
-             <script src=/dist/client.js></script>
-           </body>
-          </html>`
-        );
-        //  <script src=/dist/client.js></script>
+      const content = ReactDOM.renderToString(initialComponents);
+      const initialState = store.getState();
+      const head = Helmet.rewind();
 
-        reply(markup);
-        router.stop();
-      }).catch(({ output, error }) => {
-        // TODO: handle error properly
-        console.error(output, error); // eslint-disable-line no-console
-        router.stop();
-      });
+      const markup = (
+        `<!doctype html>
+        <html lang="ja">
+          <head>
+            ${head.title.toString()}
+            ${head.meta.toString()}
+            ${head.link.toString()}
+          </head>
+          <body>
+            <div id="app">${content}</div>
+           <script>
+             window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
+           </script>
+           <script src=/dist/client.js></script>
+         </body>
+        </html>`
+      );
+
+      console.info('==> Replying: ' + request.path); // eslint-disable-line no-console
+      reply(markup);
+      router.stop();
     });
   });
 }

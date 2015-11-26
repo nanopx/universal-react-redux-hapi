@@ -6,10 +6,13 @@ import { Provider } from 'react-redux';
 import DevTools from '../containers/DevTools';
 import createRouter from '../createRouter';
 import Root from '../containers/Root';
+import ReduxResolver from '../lib/universalReduxResolver';
 
 const reactRoot = window.document.getElementById('app');
 const router = createRouter();
+const resolver = new ReduxResolver();
 const store = configureStore(router, window.__INITIAL_STATE__);
+store.resolver = resolver;
 
 /**
  * Fire-up Router5.
@@ -25,6 +28,8 @@ router.start(() => {
     </Provider>,
     reactRoot
   );
+
+  resolver.clear();
 });
 
 
