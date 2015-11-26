@@ -2,12 +2,12 @@ import { Server } from 'hapi';
 import h2o2 from 'h2o2';
 import inert from 'inert';
 import React from 'react';
-import url from 'url';
 import Helmet from 'react-helmet';
 import ReactDOM from 'react-dom/server';
-import configureStore from './store/configureStore';
 import { RouterProvider } from 'react-router5';
 import { Provider } from 'react-redux';
+import api from './api';
+import configureStore from './store/configureStore';
 import createRouter from './createRouter';
 import ReduxResolver from './lib/universalReduxResolver';
 
@@ -45,28 +45,9 @@ export default function initialize(cb) {
   });
 
   /**
-   * Endpoint that proxies all GitHub API requests to https://api.github.com.
+   * Configure API routes
    */
-  server.route({
-    method: 'GET',
-    path: '/api/github/{path*}',
-    handler: {
-      proxy: {
-        passThrough: true,
-        mapUri(request, callback) {
-          callback(null, url.format({
-            protocol: 'https',
-            host: 'api.github.com',
-            pathname: request.params.path,
-            query: request.query,
-          }));
-        },
-        onResponse(err, res, request, reply/** , settings, ttl **/) {
-          reply(res);
-        },
-      },
-    },
-  });
+  server.route(api);
 
 
   /**
