@@ -35,7 +35,7 @@ class Repositories extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(resolve((resolver, props, getState) => {
+export default connect(mapStateToProps, mapDispatchToProps)(resolve((resolver, props/** , getState */) => {
   if (props.repositories.fetchedCount === 0) {
     resolver.resolve(props.repositorySearch);
   }
