@@ -6,6 +6,7 @@ export default class ReduxResolver {
 
   resolve(...actions) {
     const [action, ...args] = actions;
+
     if (__CLIENT__ && !this.initialRender) {
       return action(...args);
     }
@@ -14,7 +15,6 @@ export default class ReduxResolver {
   }
 
   async dispatchAll() {
-    console.log('Pending actions:', this.pending.length);
     await Promise.all(this.pending.map(({action, args}) => action(...args)));
   }
 

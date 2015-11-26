@@ -9,7 +9,6 @@ function resolve(doResolve) {
 
       componentWillMount() {
         const { resolver, getState } = this.context.store;
-
         doResolve(resolver, this.props, getState);
       }
 
