@@ -71,7 +71,7 @@ normally you wont need to change it.
 > I'm planning to fix this soon, but only if it doesn't make the boilerplate more complex.
 
 ## TODO
-- [ ] Server-side rendering with proper initial data (fetched from APIs etc.)
+- [x] Server-side rendering with proper initial data (fetched from APIs etc.)
 - [ ] Create a better example app and example tests
 - [ ] Browser reload when `./src/server.js` changes
 - [ ] Find a way to reload components without the Server-side rendering warnings. -> checking [here](https://github.com/gaearon/babel-plugin-react-transform/issues/46) for babel6 support
