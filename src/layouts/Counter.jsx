@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { routeNodeSelector } from 'redux-router5';
 import Helmet from 'react-helmet';
-import Link from './Link';
+import Link from '../containers/Link';
 import ClickCounter from '../components/ClickCounter';
 import * as CounterActions from '../actions/counter';
 

@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { routeNodeSelector } from 'redux-router5';
 import radium, { Style } from 'radium';
 import Helmet from 'react-helmet';
-import rootStyle from '../styles/rootStyle';
-import Counter from './Counter';
-import Home from './Home';
-import NotFound from './NotFound';
+import rootStyle from './styles/rootStyle';
+import Counter from './layouts/Counter';
+import Home from './layouts/Home';
+import NotFound from './layouts/NotFound';
 
 const components = {
   home: Home,
