@@ -4,7 +4,7 @@ import { RouterProvider } from 'react-router5';
 import configureStore from '../store/configureStore';
 import { Provider } from 'react-redux';
 import createRouter from '../createRouter';
-import Root from '../containers/Root';
+import Root from '../Root';
 import ReduxResolver from '../lib/universalReduxResolver';
 
 /**

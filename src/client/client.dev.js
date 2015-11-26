@@ -5,7 +5,7 @@ import configureStore from '../store/configureStore';
 import { Provider } from 'react-redux';
 import DevTools from '../containers/DevTools';
 import createRouter from '../createRouter';
-import Root from '../containers/Root';
+import Root from '../Root';
 import ReduxResolver from '../lib/universalReduxResolver';
 
 const reactRoot = window.document.getElementById('app');

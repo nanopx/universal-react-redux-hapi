@@ -90,7 +90,7 @@ export default function initialize(cb) {
 
       // require Root component here, for hot reloading the backend's component
       // TODO: there must be a better approach for this.
-      const Root = require('./containers/Root').default;
+      const Root = require('./Root').default;
 
       const initialComponents = (
         <Provider store={store}>
