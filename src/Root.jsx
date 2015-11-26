@@ -27,6 +27,10 @@ class Root extends Component {
     const segment = route ? route.name.split('.')[0] : undefined;
     return (
       <div className="Root">
+        {/*
+          * For <title> and <meta>, etc
+          * See https://github.com/nfl/react-helmet
+          */}
         <Helmet
           titleTemplate="boilerplate | %s"
           meta={[

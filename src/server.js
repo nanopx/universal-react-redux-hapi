@@ -20,6 +20,9 @@ export default function initialize(cb) {
 
   server.connection({host: hostname, port: process.env.PORT || 3000});
 
+  /**
+   * Register Hapi plugins
+   */
   server.register(
     [
       h2o2,
@@ -49,7 +52,6 @@ export default function initialize(cb) {
    */
   server.route(api);
 
-
   /**
    * Catch requests and serve using Router5
    */
@@ -66,7 +68,9 @@ export default function initialize(cb) {
     const store = configureStore(router);
     store.resolver = resolver;
 
-    // initialize router
+    /**
+     * Fire-up Router5
+     */
     router.start(request.path, async (err, state) => { // eslint-disable-line no-unused-vars
 
       // require Root component here, for hot reloading the backend's component
@@ -88,8 +92,11 @@ export default function initialize(cb) {
       // Fire all the promises for data-fetching etc.
       await resolver.dispatchAll();
 
+      // The initial content, including the data fetched via APIs etc.
       const content = ReactDOM.renderToString(initialComponents);
       const initialState = store.getState();
+
+      // For more info, see: https://github.com/nfl/react-helmet#server-usage
       const head = Helmet.rewind();
 
       const markup = (
@@ -110,7 +117,7 @@ export default function initialize(cb) {
         </html>`
       );
 
-      console.info('==> Replying: ' + request.path); // eslint-disable-line no-console
+      console.info('=> Replying: ' + request.path); // eslint-disable-line no-console
       reply(markup);
       router.stop();
     });

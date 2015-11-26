@@ -25,6 +25,9 @@ class Counter extends Component {
   render() {
     return (
       <div className="Counter">
+        {/*
+          * See: https://github.com/nfl/react-helmet
+          */}
         <Helmet title="Counter example" meta={[
           {name: 'description', content: 'Counter example'},
         ]} />
@@ -36,6 +39,10 @@ class Counter extends Component {
   }
 }
 
+/**
+ * Set the routeNode
+ * See: https://github.com/router5/redux-router5#routenodeselector
+ */
 Counter = connect(routeNodeSelector('counter'))(Counter);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);

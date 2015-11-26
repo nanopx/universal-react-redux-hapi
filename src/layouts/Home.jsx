@@ -19,6 +19,9 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
+        {/*
+          * See: https://github.com/nfl/react-helmet
+          */}
         <Helmet title="Home" />
         Home
         <Link name="home" options={{ replace: true }}>home</Link>
@@ -29,4 +32,8 @@ class Home extends Component {
   }
 }
 
+/**
+ * Set the routeNode
+ * See: https://github.com/router5/redux-router5#routenodeselector
+ */
 export default connect(routeNodeSelector('home'))(Home);

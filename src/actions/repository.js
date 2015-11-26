@@ -3,7 +3,7 @@ import {
   REPOSITORY_SEARCH,
   REPOSITORY_STOP_SEARCH,
   REPOSITORY_START_SEARCH,
-} from '../actionTypes';
+} from '../constants';
 import { searchRepository } from '../lib/githubApi';
 
 export const repositoryStartSearch = createAction(REPOSITORY_START_SEARCH);

@@ -2,7 +2,7 @@ import {
   REPOSITORY_SEARCH,
   REPOSITORY_STOP_SEARCH,
   REPOSITORY_START_SEARCH,
-} from '../actionTypes';
+} from '../constants';
 
 const initialState = {
   isLoading: false,

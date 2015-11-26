@@ -29,6 +29,7 @@ export const searchRepository = (query = '', language = 'javascript', created = 
   .then((response) => response.json())
   .then((body) => {
     return new Promise((resolve) => {
+      // Resolve with results formatted by normalizr
       resolve(Object.assign({}, normalize(body, {items: arrayOf(repository)}), {
         queries: {
           searchString: query,
