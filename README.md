@@ -8,10 +8,12 @@ A boilerplate using React + Redux + hapi + Router5, with Server-side rendering a
 
 ## TODO
 - [x] Server-side rendering with proper initial data (fetched from APIs etc.)
+- [ ] Write more detailed docs
 - [ ] Create a better example app and example tests
 - [ ] Browser reload when `./src/server.js` changes
 - [ ] Find a way to reload components without the Server-side rendering warnings. -> checking [here](https://github.com/gaearon/babel-plugin-react-transform/issues/46) for babel6 support
-- [ ] Write more detailed docs
+- [ ] Rewrite decoraters in ES7 syntax -> An issue with babel6 checking [here](http://phabricator.babeljs.io/T2645)
+- [ ] Separate components in `containers` into `layouts` and `containers`
 
 ## Features
 * Server-side rendering + hot reloads
