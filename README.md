@@ -4,9 +4,9 @@ A boilerplate using React + Redux + hapi + Router5, with Server-side rendering a
 [![Dependency Status](https://david-dm.org/nanopx/universal-react-redux-hapi.svg?style=flat-square)](https://david-dm.org/nanopx/universal-react-redux-hapi)
 [![devDependency Status](https://david-dm.org/nanopx/universal-react-redux-hapi/dev-status.svg?style=flat-square)](https://david-dm.org/nanopx/universal-react-redux-hapi#info=devDependencies)
 
-### WIP
+## WIP
 
-## TODO
+### TODO
 - [x] Server-side rendering with proper initial data (fetched from APIs etc.)
 - [ ] Write more detailed docs
 - [ ] Create a better example app and example tests
