@@ -8,7 +8,6 @@ import Counter from './Counter';
 import Home from './Home';
 import NotFound from './NotFound';
 
-
 const components = {
   home: Home,
   counter: Counter,
@@ -23,7 +22,8 @@ class Root extends Component {
   }
 
   render() {
-    const { route } = this.props;
+    // NOTE: `this.props.state` is used by the server.
+    const route = this.props.route || this.props.state;
     const segment = route ? route.name.split('.')[0] : undefined;
     return (
       <div className="Root">

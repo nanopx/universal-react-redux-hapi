@@ -8,9 +8,8 @@ import ReactDOM from 'react-dom/server';
 import configureStore from './store/configureStore';
 import { RouterProvider } from 'react-router5';
 import { Provider } from 'react-redux';
-import DevTools from './containers/DevTools';
 import createRouter from './createRouter';
-// import Root from './containers/root';
+import ReduxResolver from './lib/universalReduxResolver';
 
 export default function initialize(cb) {
   /**
@@ -78,37 +77,41 @@ export default function initialize(cb) {
       return reply.continue();
     }
 
-    console.info('==> Serving: ' + request.path); // eslint-disable-line no-console
-
     /**
      * Create Redux store, and get intitial state.
      */
     const router = createRouter();
+    const resolver = new ReduxResolver();
     const store = configureStore(router);
-    const initialState = store.getState();
+    store.resolver = resolver;
 
     // initialize router
-    router.start(request.path, (err, state) => {
-      initialState.router = {route: state};
+    router.start(request.path, async (err, state) => { // eslint-disable-line no-unused-vars
 
       // require Root component here, for hot reloading the backend's component
       // TODO: there must be a better approach for this.
       const Root = require('./containers/Root').default;
 
-      const reduxDevTools = process.env.NODE_ENV === 'production' ? null : <DevTools />;
-      const reactString = ReactDOM.renderToString(
+      const initialComponents = (
         <Provider store={store}>
           <RouterProvider router={router}>
-            <Root radiumConfig={{userAgent: request.headers['user-agent']}}>
-              {reduxDevTools}
-            </Root>
+            {/** pass down state here, so that the Root component can figure out which page to render */}
+            <Root state={state} radiumConfig={{userAgent: request.headers['user-agent']}} />
           </RouterProvider>
         </Provider>
       );
 
+      // initial render, but do nothing with it
+      ReactDOM.renderToString(initialComponents);
+
+      // Fire all the promises for data-fetching etc.
+      await resolver.dispatchAll();
+
+      const content = ReactDOM.renderToString(initialComponents);
+      const initialState = store.getState();
       const head = Helmet.rewind();
 
-      const output = (
+      const markup = (
         `<!doctype html>
         <html lang="ja">
           <head>
@@ -117,7 +120,7 @@ export default function initialize(cb) {
             ${head.link.toString()}
           </head>
           <body>
-            <div id="app">${reactString}</div>
+            <div id="app">${content}</div>
            <script>
              window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
            </script>
@@ -126,8 +129,8 @@ export default function initialize(cb) {
         </html>`
       );
 
-      reply(output);
-
+      console.info('==> Replying: ' + request.path); // eslint-disable-line no-console
+      reply(markup);
       router.stop();
     });
   });

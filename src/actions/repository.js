@@ -12,7 +12,5 @@ export const repositoryStopSearch = createAction(REPOSITORY_STOP_SEARCH);
 
 export const repositorySearch = createAction(REPOSITORY_SEARCH, async () => {
   const repositories = await searchRepository();
-  return {
-    repositories: repositories,
-  };
+  return { repositories };
 });
