@@ -4,18 +4,6 @@ A boilerplate using React + Redux + hapi + Router5, with Server-side rendering a
 [![Dependency Status](https://david-dm.org/nanopx/universal-react-redux-hapi.svg?style=flat-square)](https://david-dm.org/nanopx/universal-react-redux-hapi)
 [![devDependency Status](https://david-dm.org/nanopx/universal-react-redux-hapi/dev-status.svg?style=flat-square)](https://david-dm.org/nanopx/universal-react-redux-hapi#info=devDependencies)
 
-## WIP
-
-### TODO
-- [x] Server-side rendering with proper initial data (fetched from APIs etc.)
-- [ ] Write more detailed docs
-- [ ] Create a better example app and example tests
-- [ ] Browser reload when `./src/server.js` changes
-- [ ] Find a way to reload components without reloading the whole server. -> checking [here](https://github.com/gaearon/babel-plugin-react-transform/pull/50) for babel6 support
-- [ ] Rewrite decoraters in ES7 syntax -> An issue with babel6, checking [here](http://phabricator.babeljs.io/T2645) for current status
-- [x] Separate components in `containers` into `layouts` and `containers`
-- [x] Separate hapi's routes into another file or directory
-
 ## Features
 * Server-side rendering + hot reloads
 * [React](https://facebook.github.io/react/)
