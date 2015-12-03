@@ -17,10 +17,11 @@ if (__CLIENT__) {
 const getYesterday = () => {
   const date = new Date();
   date.setDate(date.getDate() - 1);
+  const month = date.getMonth() + 1;
   return [
     date.getFullYear(),
-    date.getMonth() + 1,
-    date.getDate(),
+    month < 10 ? '0' + month : month,
+    date.getDate() < 10 ? '0' + date.getDate() : date.getDate(),
   ].join('-');
 };
 
