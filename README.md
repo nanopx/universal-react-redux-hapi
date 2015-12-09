@@ -1,5 +1,6 @@
 # universal-react-redux-hapi
 A boilerplate using React + Redux + hapi + Router5, with Server-side rendering and hot-reloads.
+> Client-only version can be found here: [react-redux-router5](https://github.com/nanopx/react-redux-router5)
 
 [![Dependency Status](https://david-dm.org/nanopx/universal-react-redux-hapi.svg?style=flat-square)](https://david-dm.org/nanopx/universal-react-redux-hapi)
 [![devDependency Status](https://david-dm.org/nanopx/universal-react-redux-hapi/dev-status.svg?style=flat-square)](https://david-dm.org/nanopx/universal-react-redux-hapi#info=devDependencies)
@@ -16,7 +17,7 @@ A boilerplate using React + Redux + hapi + Router5, with Server-side rendering a
   - For managing app's state.
 * [Router5](http://router5.github.io/)
   - For routing.
-* [hapi.js](http://hapijs.com/) + [h2o2](https://github.com/hapijs/h2o2)
+* [hapi](http://hapijs.com/) + [h2o2](https://github.com/hapijs/h2o2)
   * For web server, web APIs, and proxying.
 * [webpack](http://webpack.github.io/)
   * For building client bundles.
