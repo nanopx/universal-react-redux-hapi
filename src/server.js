@@ -101,7 +101,7 @@ export default function initialize(cb) {
 
       const markup = (
         `<!doctype html>
-        <html lang="ja">
+        <html>
           <head>
             ${head.title.toString()}
             ${head.meta.toString()}
