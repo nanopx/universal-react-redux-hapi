@@ -1,6 +1,7 @@
 # universal-react-redux-hapi
 A boilerplate using React + Redux + hapi + Router5, with Server-side rendering and hot-reloads.
-> Client-only version can be found here: [react-redux-router5](https://github.com/nanopx/react-redux-router5)
+- Client-only version can be found here: [react-redux-router5](https://github.com/nanopx/react-redux-router5)
+- [Electron](http://electron.atom.io/) version of this boilerplate could be found here: [electron-react-redux-router5](https://github.com/nanopx/electron-react-redux-router5) - Currently WIP
 
 [![Dependency Status](https://david-dm.org/nanopx/universal-react-redux-hapi.svg?style=flat-square)](https://david-dm.org/nanopx/universal-react-redux-hapi)
 [![devDependency Status](https://david-dm.org/nanopx/universal-react-redux-hapi/dev-status.svg?style=flat-square)](https://david-dm.org/nanopx/universal-react-redux-hapi#info=devDependencies)
