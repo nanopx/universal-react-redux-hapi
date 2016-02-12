@@ -11,9 +11,5 @@ export default function createRouter() {
     // Plugins
     .usePlugin(historyPlugin());
 
-  if (__CLIENT__ && process.env.NODE_ENV !== 'production') {
-    router.usePlugin(Router5.loggerPlugin());
-  }
-
   return router;
 }
