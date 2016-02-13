@@ -60,6 +60,10 @@ export default function initialize(cb) {
       return reply.continue();
     }
 
+    if (process.env.NODE_ENV !== 'production' && request.path.includes('/sockjs-node')) {
+      return reply.continue();
+    }
+
     /**
      * Create Redux store, and get intitial state.
      */
